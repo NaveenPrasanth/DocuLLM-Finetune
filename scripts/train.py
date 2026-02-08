@@ -133,7 +133,7 @@ def print_config_summary(
     table.add_row("Gradient Accum", str(args.gradient_accumulation_steps))
     table.add_row("Effective Batch", str(args.per_device_train_batch_size * args.gradient_accumulation_steps))
     table.add_row("LR Scheduler", args.lr_scheduler_type)
-    table.add_row("Warmup Ratio", str(args.warmup_ratio))
+    table.add_row("Warmup Steps", str(args.warmup_steps))
     table.add_row("Max Seq Length", str(args.max_seq_length))
     table.add_row("Precision", "bf16" if args.bf16 else "fp16" if args.fp16 else "fp32")
 

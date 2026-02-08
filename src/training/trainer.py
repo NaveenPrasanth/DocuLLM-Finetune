@@ -50,7 +50,7 @@ def build_training_args(
         gradient_accumulation_steps=args_config.gradient_accumulation_steps,
         learning_rate=args_config.learning_rate,
         lr_scheduler_type=args_config.lr_scheduler_type,
-        warmup_ratio=args_config.warmup_ratio,
+        warmup_steps=args_config.warmup_steps,
         weight_decay=args_config.weight_decay,
         bf16=args_config.bf16,
         fp16=args_config.fp16,

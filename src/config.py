@@ -126,7 +126,7 @@ class TrainingArgsConfig(BaseModel):
     gradient_accumulation_steps: int = 8
     learning_rate: float = 2e-4
     lr_scheduler_type: str = "cosine"
-    warmup_ratio: float = 0.1
+    warmup_steps: int = 15
     weight_decay: float = 0.01
     bf16: bool = True
     fp16: bool = False
