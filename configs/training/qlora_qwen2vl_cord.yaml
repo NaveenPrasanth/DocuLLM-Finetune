@@ -1,0 +1,59 @@
+training:
+  # QLoRA Configuration
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_compute_dtype: bfloat16
+    bnb_4bit_use_double_quant: true
+
+  lora:
+    r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+    task_type: CAUSAL_LM
+    bias: none
+
+  # Training Arguments
+  args:
+    num_train_epochs: 3
+    per_device_train_batch_size: 1
+    per_device_eval_batch_size: 1
+    gradient_accumulation_steps: 8
+    learning_rate: 2.0e-4
+    lr_scheduler_type: cosine
+    warmup_ratio: 0.1
+    weight_decay: 0.01
+    bf16: true
+    fp16: false
+    gradient_checkpointing: true
+    max_grad_norm: 1.0
+    logging_steps: 10
+    eval_steps: 50
+    save_steps: 100
+    save_total_limit: 3
+    eval_strategy: steps
+    dataloader_num_workers: 2
+    remove_unused_columns: false
+    max_seq_length: 2048
+    report_to: wandb
+
+  # Dataset
+  dataset:
+    name: cord
+    config_path: configs/data/cord.yaml
+    include_synthetic: true
+    synthetic_ratio: 0.2
+
+  # Output
+  output:
+    dir: ./outputs/qlora_qwen2vl_cord
+    save_adapter: true
+    push_to_hub: false

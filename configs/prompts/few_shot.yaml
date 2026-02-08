@@ -1,0 +1,28 @@
+prompts:
+  few_shot_2:
+    name: few_shot_2
+    strategy: few_shot
+    num_examples: 2
+    template: |
+      Extract receipt information from images as structured JSON.
+
+      Here are examples of correct extractions:
+
+      {examples}
+
+      Now extract from the current image using the same format. Return ONLY valid JSON.
+    description: "2-shot with representative examples"
+
+  few_shot_5:
+    name: few_shot_5
+    strategy: few_shot
+    num_examples: 5
+    template: |
+      Extract receipt information from images as structured JSON.
+
+      Here are examples of correct extractions:
+
+      {examples}
+
+      Now extract from the current image using the same format. Return ONLY valid JSON.
+    description: "5-shot with diverse examples"

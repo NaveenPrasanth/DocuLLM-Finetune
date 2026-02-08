@@ -1,0 +1,35 @@
+prompts:
+  cot_step_by_step:
+    name: cot_step_by_step
+    strategy: chain_of_thought
+    template: |
+      Extract all receipt information from this image step by step.
+
+      Step 1: Identify the receipt layout and sections
+      Step 2: Read each menu item (name, quantity, price)
+      Step 3: Find subtotals and discounts
+      Step 4: Find the total amount and payment details
+      Step 5: Compile everything into this JSON format:
+
+      {schema}
+
+      Think through each step, then provide the final JSON after "RESULT:".
+    description: "Step-by-step reasoning before extraction"
+
+  cot_self_verify:
+    name: cot_self_verify
+    strategy: chain_of_thought
+    template: |
+      Extract all receipt information from this image.
+
+      First, extract all fields into JSON format:
+      {schema}
+
+      Then verify your extraction:
+      - Do the item prices sum to the subtotal?
+      - Does subtotal + tax = total?
+      - Are all visible items captured?
+      - Are currency amounts formatted correctly?
+
+      If you find errors, correct them. Return the final verified JSON after "RESULT:".
+    description: "Extract then self-verify with arithmetic checks"

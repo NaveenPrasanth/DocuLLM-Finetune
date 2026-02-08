@@ -1,0 +1,28 @@
+project:
+  name: documind
+  seed: 42
+  output_dir: ./outputs
+  data_dir: ./data
+  model_dir: ./models
+  log_level: INFO
+
+model:
+  name: Qwen/Qwen2-VL-2B-Instruct
+  processor_name: Qwen/Qwen2-VL-2B-Instruct
+  max_pixels: 1280
+  min_pixels: 256
+  dtype: bfloat16
+
+api:
+  anthropic_model: claude-sonnet-4-20250514
+  openai_model: gpt-4o
+  max_retries: 3
+  timeout: 60
+
+wandb:
+  project: documind
+  entity: null
+  tags:
+    - qwen2-vl
+    - document-understanding
+    - qlora

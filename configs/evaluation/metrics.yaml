@@ -1,0 +1,31 @@
+evaluation:
+  metrics:
+    field_f1:
+      enabled: true
+      average: [micro, macro]
+      per_field: true
+    exact_match:
+      enabled: true
+    anls:
+      enabled: true
+      threshold: 0.5
+    json_validity:
+      enabled: true
+    schema_compliance:
+      enabled: true
+
+  test_samples: 100
+  batch_size: 4
+
+  models_to_compare:
+    - name: base
+      description: "Qwen2-VL-2B-Instruct without any prompting"
+    - name: prompted
+      description: "Best prompt strategy from Phase 3"
+    - name: finetuned
+      description: "QLoRA fine-tuned model"
+
+  significance:
+    test: bootstrap
+    n_bootstrap: 1000
+    confidence_level: 0.95

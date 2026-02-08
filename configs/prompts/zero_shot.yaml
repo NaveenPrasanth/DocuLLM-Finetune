@@ -1,0 +1,38 @@
+prompts:
+  zero_shot_basic:
+    name: zero_shot_basic
+    strategy: zero_shot
+    template: |
+      Extract all fields from this receipt image as JSON.
+    description: "Minimal instruction, no schema guidance"
+
+  zero_shot_detailed:
+    name: zero_shot_detailed
+    strategy: zero_shot
+    template: |
+      You are a document extraction specialist. Analyze this receipt image and extract all information into a structured JSON format.
+
+      Extract the following categories:
+      - menu: item names, quantities, unit prices, total prices
+      - total: total price, cash, change, credit card amounts
+      - sub_total: subtotal, discounts, tax, service charges
+      - etc: any other relevant information
+
+      Return ONLY valid JSON, no explanations.
+    description: "Detailed instruction with field categories"
+
+  zero_shot_structured:
+    name: zero_shot_structured
+    strategy: zero_shot
+    template: |
+      Extract receipt information from this image into the exact JSON schema below.
+
+      Schema:
+      {schema}
+
+      Rules:
+      1. Use null for fields not present in the image
+      2. Preserve exact text as shown (including currency symbols)
+      3. Menu items should be a list of objects
+      4. Return ONLY the JSON object, no markdown or explanations
+    description: "Schema-guided with explicit rules"

@@ -1,0 +1,58 @@
+dataset:
+  name: cord
+  hf_path: naver-clova-ix/cord-v2
+  description: "CORD v2 - Consolidated Receipt Dataset for Post-OCR Parsing"
+
+  splits:
+    train: 720
+    val: 80
+    test: 100
+
+  superclasses:
+    - menu
+    - total
+    - sub_total
+    - void_menu
+    - etc
+
+  fields:
+    menu:
+      - menu.nm
+      - menu.num
+      - menu.unitprice
+      - menu.cnt
+      - menu.discountprice
+      - menu.price
+      - menu.itemsubtotal
+      - menu.vatyn
+      - menu.etc
+      - menu.sub_nm
+      - menu.sub_unitprice
+      - menu.sub_cnt
+      - menu.sub_price
+      - menu.sub_etc
+    total:
+      - total.total_price
+      - total.total_etc
+      - total.cashprice
+      - total.changeprice
+      - total.creditcardprice
+      - total.emoneyprice
+      - total.menutype_cnt
+      - total.menuqty_cnt
+    sub_total:
+      - sub_total.subtotal_price
+      - sub_total.discount_price
+      - sub_total.service_price
+      - sub_total.othersvc_price
+      - sub_total.tax_price
+      - sub_total.etc
+    void_menu:
+      - void_menu.nm
+      - void_menu.price
+    etc:
+      - etc.etc
+
+  preprocessing:
+    max_image_size: 1280
+    image_format: RGB

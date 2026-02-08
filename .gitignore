@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_metadata
+
+# Data & Models (large files)
+/data/
+/models/
+/outputs/
+wandb/
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+.huggingface/

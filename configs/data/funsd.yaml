@@ -1,0 +1,19 @@
+dataset:
+  name: funsd
+  hf_path: nielsr/funsd
+  description: "FUNSD - Form Understanding in Noisy Scanned Documents"
+
+  splits:
+    train: 149
+    test: 50
+
+  entity_types:
+    - question
+    - answer
+    - header
+    - other
+
+  preprocessing:
+    max_image_size: 1280
+    image_format: RGB
+    extract_key_value_pairs: true

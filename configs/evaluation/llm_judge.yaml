@@ -1,0 +1,54 @@
+llm_judge:
+  enabled: true
+  num_samples: 50
+
+  judges:
+    - provider: anthropic
+      model: claude-sonnet-4-20250514
+    - provider: openai
+      model: gpt-4o
+
+  rubric:
+    completeness:
+      description: "How many fields from the receipt were captured?"
+      scale:
+        1: "Less than 20% of fields extracted"
+        2: "20-50% of fields extracted"
+        3: "50-75% of fields extracted"
+        4: "75-95% of fields extracted"
+        5: "All visible fields extracted"
+
+    accuracy:
+      description: "How accurate are the extracted values?"
+      scale:
+        1: "Most values are wrong or fabricated"
+        2: "Many errors in values"
+        3: "Some errors, mostly correct"
+        4: "Minor errors only"
+        5: "All values exactly match the receipt"
+
+    format:
+      description: "Is the output valid, well-structured JSON matching the schema?"
+      scale:
+        1: "Not valid JSON"
+        2: "Valid JSON but wrong structure"
+        3: "Correct structure with some issues"
+        4: "Good structure, minor formatting issues"
+        5: "Perfect JSON matching the expected schema"
+
+  prompt_template: |
+    You are evaluating a model's receipt extraction quality.
+
+    Ground truth extraction:
+    {ground_truth}
+
+    Model's extraction:
+    {prediction}
+
+    Rate the extraction on three dimensions (1-5 each):
+    1. Completeness: {completeness_description}
+    2. Accuracy: {accuracy_description}
+    3. Format: {format_description}
+
+    Respond with JSON only:
+    {{"completeness": <int>, "accuracy": <int>, "format": <int>, "reasoning": "<brief explanation>"}}
